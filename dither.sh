@@ -27,6 +27,8 @@
 #                     result upscaled 4x (nearest neighbor) to scan scale
 #
 # Output is a 1-bit image sized WIDTH_INCHES * DPI wide, aspect preserved.
+# Landscape inputs are rotated 90 degrees clockwise (after EXIF auto-orient)
+# so the shorter image dimension always maps to the paper width.
 
 set -eu
 
@@ -55,6 +57,8 @@ done
 DOTS=$(awk "BEGIN { printf \"%d\", $WIDTH_IN * $DPI + 0.5 }")
 
 magick "$IN" \
+  -auto-orient \
+  -rotate "90>" \
   -colorspace Gray \
   -resize "${DOTS}x" \
   -gamma "$GAMMA" \
