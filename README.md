@@ -34,6 +34,22 @@ Notes from the calibration:
   similar magnified but prints with a visibly smaller grid and, at only
   9 gray levels, harsh banding in smooth gradients.
 
+## Results
+
+Source photo, the 1-bit file this script produces, and 1200 dpi scans of
+actual prints:
+
+| Source | This script (digital) | This script (printed) | Fedora/CUPS (printed) | macOS (printed) |
+| --- | --- | --- | --- | --- |
+| <img src="imgs/peanut.jpg" alt="source" width="150"> | <img src="imgs/dithered.png" alt="digital 1-bit output" width="150"> | <img src="imgs/this-script.jpg" alt="print from this script" width="150"> | <img src="imgs/fedora.jpg" alt="print from Fedora/CUPS" width="150"> | <img src="imgs/macos.jpg" alt="print from macOS" width="150"> |
+
+The print from this script and the Fedora/CUPS print it reverse-engineers
+are near-identical: same 53 lpi screen, same tonality. The macOS print of
+the same photo (via the stock print dialog) comes out much darker and
+muddier — fine dithering below what the thermal head can resolve — which is
+what prompted this project: get the good Ghostscript-style halftone from any
+OS, then ship the exact dots to the printer yourself.
+
 ## Requirements
 
 ImageMagick and [just](https://github.com/casey/just) — `mise install` sets
